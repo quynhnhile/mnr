@@ -1,0 +1,54 @@
+model Survey {
+  id                   BigInt    @id @default(autoincrement())
+  idRep                BigInt    @map("id_rep") @db.BigInt // ID CỦA BẢNG DT_REPAIR_CONT
+  idCont               String    @map("id_cont") @db.VarChar(50)
+  containerNo          String    @map("container_no") @db.VarChar(20)
+  surveyNo             String    @unique @map("survey_no") @db.VarChar(50)
+  eirNo                String?   @map("eir_no") @db.VarChar(50)
+  fe                   String?   @map("fe") @db.VarChar(50) // E: Empty, F: Full
+  isInOut              String    @default("I") @map("is_in_out") @db.VarChar(1) // I: In, O: Out
+  surveyLocationCode   String    @map("survey_location_code") @db.VarChar(50) // Vị trí Cổng | Tàu | Bãi | CFS
+  contAge              String?   @map("cont_age") @db.VarChar(10)
+  machineAge           String?   @map("machine_age") @db.VarChar(10)
+  machineBrand         String?   @map("machine_brand") @db.VarChar(100)
+  machineModel         String?   @map("machine_model") @db.VarChar(100)
+  conditionCode        String?   @map("condition_code") @db.VarChar(50)
+  conditionMachineCode String?   @map("condition_machine_code") @db.VarChar(50)
+  classifyCode         String?   @map("classify_code") @db.VarChar(50)
+  cleanMethodCode      String?   @map("clean_method_code") @db.VarChar(50)
+  cleanModeCode        String?   @map("clean_mode_code") @db.VarChar(50)
+  deposit              Decimal?  @db.Decimal(18, 2)
+  vendorCode           String?    @map("vendor_code") @db.VarChar(50)
+  idCheck              BigInt?   @map("id_check") @db.BigInt // ID dòng phiếu kiểm tra đối với cont Tank (required if contType = Tank)
+  checkNo              String?   @map("check_no") @db.VarChar(50)
+  isTankOutside        Boolean?  @default(false) @map("is_tank_outside") @db.Boolean
+  isTankInside         Boolean?  @default(false) @map("is_tank_inside") @db.Boolean
+  isTest1bar           Boolean?  @default(false) @map("is_test_1bar") @db.Boolean
+  preSurveyNo          String?   @map("pre_survey_no") @db.VarChar(50)
+  surveyDate           DateTime  @map("survey_date") @db.Timestamptz(3)
+  surveyBy             String    @map("survey_by") @db.VarChar(36)
+  finishDate           DateTime? @map("finish_date") @db.Timestamptz(3)
+  finishBy             String?   @map("finish_by") @db.VarChar(36)
+  isRemoveMark         Boolean?  @default(false) @map("is_remove_mark") @db.Boolean
+  removeMark           Int?      @map("remove_mark") @db.Integer
+  isRevice             Boolean?  @default(false) @map("is_revice") @db.Boolean
+  altSurveyNo          String?   @map("alt_survey_no") @db.VarChar(50) // required if isRevice = true
+  noteSurvey           String?   @map("note_survey") @db.Text
+  noteCont             String?   @map("note_cont") @db.Text
+  noteDam              String?   @map("note_dam") @db.Text
+  noteSpecialHandling  String?   @map("note_special_handling") @db.Text
+  noteEir              String?   @map("note_eir") @db.Text
+  noteMachine          String?   @map("note_machine") @db.Text
+  note                 String?   @db.Text
+  isException          Boolean?  @default(false) @map("is_exception") @db.Boolean
+  pti                  Boolean?  @default(false) @db.Boolean
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  surveyDetails SurveyDetail[]
+
+  @@map("dt_survey")
+}

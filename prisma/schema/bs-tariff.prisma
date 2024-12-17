@@ -1,0 +1,30 @@
+model Tariff {
+  id           BigInt   @id @default(autoincrement())
+  groupTrfCode String   @map("group_trf_code") @db.VarChar(50)
+  compCode     String   @map("comp_code") @db.VarChar(50)
+  locCode      String?  @map("loc_code") @db.VarChar(50)
+  damCode      String?   @map("dam_code") @db.VarChar(50)
+  repCode      String   @map("rep_code") @db.VarChar(50)
+  length       Decimal  @db.Decimal(18, 2)
+  width        Decimal  @db.Decimal(18, 2)
+  square       Decimal  @default(0) @db.Decimal(18, 2) // length * width
+  unit         String   @db.VarChar(5) // Q,S,L
+  quantity     Int      @db.Integer
+  hours        Decimal  @db.Decimal(18, 2)
+  currency     String   @db.VarChar(5) // VND, USD
+  mateAmount   Decimal  @map("mate_amount") @db.Decimal(18, 2)
+  totalAmount  Decimal  @map("total_amount") @db.Decimal(18, 2)
+  vat          Decimal? @db.Decimal(5, 2)
+  includeVat   Boolean  @map("include_vat") @db.Boolean
+  add          Decimal? @db.Decimal(18, 2)
+  addHours     Decimal? @map("add_hours") @db.Decimal(18, 2)
+  addMate      Decimal? @map("add_mate") @db.Decimal(18, 2)
+  note         String?  @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("bs_tariff")
+}

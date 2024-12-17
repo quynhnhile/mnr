@@ -1,0 +1,18 @@
+model Operation {
+  id             BigInt  @id @default(autoincrement())
+  operationCode  String  @unique @map("operation_code") @db.VarChar(50)
+  operationName  String  @map("operation_name") @db.VarChar(100)
+  isEdo          Boolean @default(false) @map("is_edo") @db.Boolean
+  isActive       Boolean @default(true) @map("is_active") @db.Boolean
+  isLocalForeign String? @default("L") @map("is_local_foreign") @db.VarChar(5)
+  moneyCredit    String? @default("M") @map("money_credit") @db.VarChar(10)
+  policyInfo     String? @map("policy_info") @db.VarChar(500)
+  cleanMethodCode String?  @map("clean_method_code") @db.VarChar(50)
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("bs_operation")
+}

@@ -1,0 +1,27 @@
+model InfoCont {
+  id             BigInt   @id @default(autoincrement())
+  containerNo    String   @map("container_no") @db.VarChar(50)
+  operationCode  String   @map("operation_code") @db.VarChar(50)
+  ownerCode      String?   @map("owner_code") @db.VarChar(20)
+  localSizeType  String  @map("local_size_type") @db.VarChar(10)
+  isoSizeType    String  @map("iso_size_type") @db.VarChar(10)
+  contType       String  @map("cont_type") @db.VarChar(50)
+  contAge        String?  @map("cont_age") @db.VarChar(10)
+  machineAge     String?  @map("machine_age") @db.VarChar(10)
+  machineBrand   String?  @map("machine_brand") @db.VarChar(100)
+  machineModel   String?  @map("machine_model") @db.VarChar(100)
+  tareWeight     Decimal? @map("tare_weight") @db.Decimal(18, 2)
+  maxGrossWeight Decimal? @map("max_gross_weight") @db.Decimal(18, 2)
+  net            Decimal? @map("net_weight") @db.Decimal(18, 2)
+  capacity       Decimal? @db.Decimal(18, 2)
+  lastTest       String?  @db.Text
+  typeTest       String?  @map("type_test") @db.VarChar(20) // LOẠI A VÀ H - DÀNH CONT TANK
+  note           String?  @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("bs_info_cont")
+}

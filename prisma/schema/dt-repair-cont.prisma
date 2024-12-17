@@ -1,0 +1,39 @@
+model RepairCont {
+  id                        BigInt    @id @default(autoincrement())
+  idCont                    String    @map("id_cont") @db.VarChar(50)
+  containerNo               String    @map("container_no") @db.VarChar(50)
+  operationCode             String    @map("operation_code") @db.VarChar(50)
+  pinCode                   String?   @map("pin_code") @db.VarChar(25)
+  orderNo                   String?   @map("order_no") @db.VarChar(50)
+  bookingNo                 String?   @map("booking_no") @db.VarChar(100)
+  blNo                      String?   @map("bl_no") @db.VarChar(100)
+  location                  String?   @map("location") @db.VarChar(100)
+  localSizeType             String    @map("local_size_type") @db.VarChar(10)
+  isoSizeType               String    @map("iso_size_type") @db.VarChar(10)
+  conditionCode             String?   @map("condition_code") @db.VarChar(50)
+  classifyCode              String?   @map("classify_code") @db.VarChar(50)
+  conditionMachineCode      String?   @map("condition_machine_code") @db.VarChar(50)
+  conditionCodeAfter        String?   @map("condition_code_after") @db.VarChar(50)
+  conditionMachineCodeAfter String?   @map("condition_machine_code_after") @db.VarChar(50)
+  factoryDate               DateTime? @map("factory_date") @db.Timestamptz(3)
+  statusCode                String    @map("status_code") @db.VarChar(5)
+  surveyInNo                String?   @map("survey_in_no") @db.VarChar(50)
+  surveyOutNo               String?   @map("survey_out_not") @db.VarChar(50)
+  estimateNo                String?   @map("estimate_no") @db.VarChar(50)
+  isComplete                Boolean?  @default(false) @map("is_complete") @db.Boolean
+  completeDate              DateTime? @map("complete_date") @db.Timestamptz(3)
+  completeBy                String?   @map("complete_by") @db.VarChar(36)
+  billCheck                 Boolean?  @default(false) @map("bill_check") @db.Boolean
+  billDate                  DateTime? @map("bill_date") @db.Timestamptz(3)
+  billOprConfirm            Boolean?  @default(false) @map("bill_opr_confirm") @db.Boolean
+  billOprReason             String?   @map("bill_opr_reason") @db.Text
+  isPosted                  Boolean?  @default(false) @map("is_posted") @db.Boolean
+  note                      String?   @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("dt_repair_cont")
+}

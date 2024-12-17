@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "bs_tariff" ALTER COLUMN "length" DROP NOT NULL,
+ALTER COLUMN "width" DROP NOT NULL;

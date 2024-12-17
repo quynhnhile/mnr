@@ -1,0 +1,18 @@
+model LocalDmgDetail {
+  id             BigInt   @id @default(autoincrement())
+  idSurvey       BigInt   @map("id_survey") @db.BigInt
+  idCont         String   @map("id_cont") @db.VarChar(50)
+  damLocalCode   String   @map("dam_local_code") @db.VarChar(50)
+  locLocalCode   String   @map("loc_local_code") @db.VarChar(50)
+  symbolCode     String   @map("symbol_code") @db.VarChar(50)
+  size           String   @db.VarChar(50)
+  damDesc        String?  @db.Text
+  note           String?  @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("dt_local_dmg_detail")
+}

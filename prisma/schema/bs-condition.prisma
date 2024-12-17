@@ -1,0 +1,18 @@
+model Condition {
+  id            BigInt  @id @default(autoincrement())
+  operationCode String  @map("operation_code") @db.VarChar(50)
+  conditionCode String  @map("condition_code") @db.VarChar(50)
+  conditionName String  @map("condition_name") @db.VarChar(100)
+  isDamage      Boolean @map("is_damage") @db.Boolean
+  isMachine     Boolean @map("is_machine") @db.Boolean
+  mappingCode   String?  @map("mapping_code") @db.VarChar(50)
+  note          String? @map("note") @db.VarChar(200)
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@unique([operationCode, conditionCode, isMachine])
+  @@map("bs_condition")
+}

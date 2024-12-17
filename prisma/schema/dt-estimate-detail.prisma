@@ -1,0 +1,49 @@
+model EstimateDetail {
+  id                BigInt    @id @default(autoincrement())
+  idEstimate        BigInt    @map("id_estimate") @db.BigInt
+  estimateNo        String    @map("estimate_no") @db.VarChar(50)
+  compCode          String    @map("comp_code") @db.VarChar(50)
+  locCode           String?    @map("loc_code") @db.VarChar(50)
+  damCode           String?    @map("dam_code") @db.VarChar(50)
+  repCode           String    @map("rep_code") @db.VarChar(50)
+  length            Decimal   @db.Decimal(18, 2)
+  width             Decimal   @db.Decimal(18, 2)
+  quantity          Int       @db.Integer
+  unit              String?   @db.VarChar(5)
+  hours             Decimal?  @db.Decimal(18, 2)
+  cwo               String?   @db.VarChar(50)
+  laborRate         Decimal?  @map("labor_rate") @db.Decimal(18, 2)
+  laborPrice        Decimal?  @map("labor_price") @db.Decimal(18, 2)
+  matePrice         Decimal?  @map("mate_price") @db.Decimal(18, 2)
+  total             Decimal?  @db.Decimal(18, 2)
+  currency          String?   @map("currency") @db.VarChar(5) // VND, USD
+  payerCode         String    @map("payer") @db.VarChar(50)
+  symbolCode        String    @map("symbol") @db.VarChar(10)
+  rate              Decimal   @db.Decimal(20, 2)
+  isClean           Boolean   @default(false) @map("is_clean") @db.Boolean
+  cleanMethodCode   String?   @map("clean_method_code") @db.VarChar(50)
+  cleanModeCode     String?   @map("clean_mode_code") @db.VarChar(50)
+  statusCode        String    @map("status_code") @db.VarChar(5)
+  localApprovalDate DateTime? @map("local_approval_date") @db.Timestamptz(3)
+  localApprovalBy   String?   @map("local_approval_by") @db.VarChar(36)
+  approvalDate      DateTime? @map("approval_date") @db.Timestamptz(3)
+  approvalBy        String?   @map("approval_by") @db.VarChar(36)
+  reqActiveDate     DateTime? @map("req_active_date") @db.Timestamptz(3)
+  reqActiveBy       String?   @map("req_active_by") @db.VarChar(36)
+  sendOprDate       DateTime? @map("send_opr_date") @db.Timestamptz(3)
+  sendOprBy         String?   @map("send_opr_by") @db.VarChar(36)
+  cancelDate        DateTime? @map("cancel_date") @db.Timestamptz(3)
+  cancelBy          String?   @map("cancel_by") @db.VarChar(36)
+  isOprCancel       Boolean   @default(false) @map("is_opr_cancel") @db.Boolean
+  note              String?   @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  estimate        Estimate         @relation(fields: [idEstimate], references: [id])
+  jobRepairCleans JobRepairClean[] @relation("EstimateDetailJobs")
+
+  @@map("dt_estimate_detail")
+}

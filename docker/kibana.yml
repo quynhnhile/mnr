@@ -1,0 +1,16 @@
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+
+elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "EJW2yqI33bx2QZBGPnGNJ9XK9OAPN5Om"
+
+xpack.security.enabled: "true"
+# generate custom password with min length 32
+xpack.encryptedSavedObjects.encryptionKey: EJW2yqI33bx2QZBGPnGNJ9XK9OAPN5Om
+xpack.reporting.encryptionKey: EJW2yqI33bx2QZBGPnGNJ9XK9OAPN5Om
+xpack.security.encryptionKey: EJW2yqI33bx2QZBGPnGNJ9XK9OAPN5Om
+
+# optional
+xpack.reporting.capture.browser.chromium.disableSandbox: false
+xpack.reporting.roles.enabled: false

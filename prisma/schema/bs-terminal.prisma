@@ -1,0 +1,31 @@
+model Terminal {
+  id               BigInt  @id @default(autoincrement())
+  regionCode       String  @map("region_code") @db.VarChar(50)
+  terminalCode     String  @unique @map("terminal_code") @db.VarChar(50)
+  terminalName     String  @map("terminal_name") @db.VarChar(100)
+  terminalNameEng  String? @map("terminal_name_eng") @db.VarChar(100)
+  address          String? @db.Text
+  vat              String? @db.VarChar(50)
+  email            String? @db.VarChar(100)
+  tel              String? @db.VarChar(100)
+  fax              String? @db.VarChar(100)
+  web              String? @db.VarChar(200)
+  hotlineInfo      String? @map("hotline_info") @db.VarChar(100)
+  logoText         String? @map("logo_text") @db.VarChar(200)
+  logoHtml         String? @db.Text
+  contactName      String? @map("contact_name") @db.VarChar(200)
+  contactGroupName String? @map("contact_group_name") @db.VarChar(200)
+  contactTel       String? @map("contact_tel") @db.VarChar(100)
+  contactZaloId    String? @map("contact_zalo_id") @db.VarChar(100)
+  contactFbId      String? @map("contact_fb_id") @db.VarChar(100)
+  contactEmail     String? @map("contact_email") @db.VarChar(100)
+  isActive         Boolean @default(true) @map("is_active")
+  note             String? @db.Text
+
+  createdBy String?   @map("created_by") @db.VarChar(50)
+  createdAt DateTime? @default(now()) @map("created_time")
+  updatedBy String?   @map("modified_by") @db.VarChar(50)
+  updatedAt DateTime? @default(now()) @map("modified_time")
+
+  @@map("bs_terminal")
+}

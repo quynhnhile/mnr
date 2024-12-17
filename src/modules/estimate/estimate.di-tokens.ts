@@ -1,0 +1,8 @@
+// Tokens used for Dependency Injection
+
+export const ESTIMATE_REPOSITORY = Symbol('ESTIMATE_REPOSITORY');
+export const ESTIMATE_DETAIL_REPOSITORY = Symbol('ESTIMATE_DETAIL_REPOSITORY');
+export const JOB_REPAIR_CLEAN_REPOSITORY = Symbol(
+  'JOB_REPAIR_CLEAN_REPOSITORY',
+);
+export const REPAIR_CONT_REPOSITORY = Symbol('REPAIR_CONT_REPOSITORY');

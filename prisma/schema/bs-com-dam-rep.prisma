@@ -1,0 +1,17 @@
+model ComDamRep {
+  id       BigInt  @id @default(autoincrement())
+  compCode String  @map("comp_code") @db.VarChar(50)
+  damCode  String  @map("dam_code") @db.VarChar(50)
+  repCode  String  @map("rep_code") @db.VarChar(50)
+  nameEn   String  @map("name_en") @db.VarChar(200)
+  nameVi   String?  @map("name_vi") @db.VarChar(200)
+  note     String? @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@unique([compCode, damCode, repCode])
+  @@map("bs_com_dam_rep")
+}

@@ -1,0 +1,13 @@
+model JobTask {
+  id          BigInt  @id @default(autoincrement())
+  jobTaskCode String  @unique @map("jobtask_code") @db.VarChar(50)
+  jobTaskName String  @map("jobtask_name") @db.VarChar(100)
+  note        String? @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("bs_jobtask")
+}

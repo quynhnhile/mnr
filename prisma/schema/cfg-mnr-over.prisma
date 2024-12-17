@@ -1,0 +1,22 @@
+model ConfigMnROver {
+  id             BigInt  @id @default(autoincrement())
+  statusTypeCode String  @map("status_type_code") @db.VarChar(50)
+  contType       String  @map("cont_type") @db.VarChar(50)
+  jobModeCode    String  @map("job_mode_code") @db.VarChar(50)
+  methodCode     String  @map("method_code") @db.VarChar(50)
+  startDate      String  @map("start_date") @db.VarChar(50)
+  endDate        String  @map("end_date") @db.VarChar(50)
+  pti            String? @db.VarChar(50)
+  from           Int     @db.Integer
+  to             Int     @db.Integer
+  unit           String  @db.VarChar(50)
+  quantity       Int     @db.Integer
+  note           String? @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("cfg_mnr_over")
+}

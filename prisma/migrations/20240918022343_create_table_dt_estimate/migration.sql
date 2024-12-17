@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE "dt_estimate" (
+    "id" BIGSERIAL NOT NULL,
+    "id_ref" BIGINT NOT NULL,
+    "id_cont" VARCHAR(50) NOT NULL,
+    "container_no" VARCHAR(20) NOT NULL,
+    "estimate_no" VARCHAR(50) NOT NULL,
+    "estimate_by" VARCHAR(36) NOT NULL,
+    "estimate_date" TIMESTAMPTZ(3) NOT NULL,
+    "status_code" VARCHAR(2) NOT NULL DEFAULT 'I',
+    "local_approval_by" VARCHAR(36),
+    "local_approval_date" TIMESTAMPTZ(3),
+    "send_opr_by" VARCHAR(36),
+    "send_opr_date" TIMESTAMPTZ(3),
+    "approval_by" VARCHAR(36),
+    "approval_date" TIMESTAMPTZ(3),
+    "cancel_by" VARCHAR(36),
+    "cancel_date" TIMESTAMPTZ(3),
+    "is_opr_cancel" BOOLEAN DEFAULT false,
+    "req_active_by" VARCHAR(36),
+    "req_active_date" TIMESTAMPTZ(3),
+    "alt_estimate_no" VARCHAR(50),
+    "note_estimate" TEXT,
+    "note" TEXT,
+    "created_date" TIMESTAMPTZ(3) DEFAULT CURRENT_TIMESTAMP,
+    "created_by" VARCHAR(36) NOT NULL,
+    "modified_date" TIMESTAMPTZ(3),
+    "modified_by" VARCHAR(36),
+
+    CONSTRAINT "dt_estimate_pkey" PRIMARY KEY ("id")
+);

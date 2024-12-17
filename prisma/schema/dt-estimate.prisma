@@ -1,0 +1,33 @@
+model Estimate {
+  id                BigInt    @id @default(autoincrement())
+  idRef             BigInt    @map("id_ref") @db.BigInt
+  idCont            String    @map("id_cont") @db.VarChar(50)
+  containerNo       String    @map("container_no") @db.VarChar(20)
+  estimateNo        String    @map("estimate_no") @db.VarChar(50)
+  estimateBy        String?    @map("estimate_by") @db.VarChar(36)
+  estimateDate      DateTime?  @map("estimate_date") @db.Timestamptz(3)
+  statusCode        String    @default("I") @map("status_code") @db.VarChar(2)
+  localApprovalBy   String?   @map("local_approval_by") @db.VarChar(36)
+  localApprovalDate DateTime? @map("local_approval_date") @db.Timestamptz(3)
+  sendOprBy         String?   @map("send_opr_by") @db.VarChar(36)
+  sendOprDate       DateTime? @map("send_opr_date") @db.Timestamptz(3)
+  approvalBy        String?   @map("approval_by") @db.VarChar(36)
+  approvalDate      DateTime? @map("approval_date") @db.Timestamptz(3)
+  cancelBy          String?   @map("cancel_by") @db.VarChar(36)
+  cancelDate        DateTime? @map("cancel_date") @db.Timestamptz(3)
+  isOprCancel       Boolean?  @default(false) @map("is_opr_cancel") @db.Boolean
+  reqActiveBy       String?   @map("req_active_by") @db.VarChar(36)
+  reqActiveDate     DateTime? @map("req_active_date") @db.Timestamptz(3)
+  altEstimateNo     String?   @map("alt_estimate_no") @db.VarChar(50)
+  noteEstimate      String?   @map("note_estimate") @db.Text
+  note              String?   @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  estimateDetails EstimateDetail[]
+
+  @@map("dt_estimate")
+}

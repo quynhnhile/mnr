@@ -1,0 +1,21 @@
+model Component {
+  id            BigInt   @id @default(autoincrement())
+  operationCode String?  @map("operation_code") @db.VarChar(50)
+  compCode      String   @map("comp_code") @db.VarChar(50)
+  compNameEn    String   @map("comp_name_en") @db.VarChar(200)
+  compNameVi    String?   @map("comp_name_vi") @db.VarChar(200)
+  assembly      String?   @db.VarChar(200)
+  side          String?   @db.VarChar(100)
+  contType      String?   @map("cont_type") @db.VarChar(100)
+  materialCode  String?   @map("material_code") @db.VarChar(50)
+  isMachine     Boolean? @default(false) @map("is_machine") @db.Boolean
+  note          String?  @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@unique([operationCode, compCode])
+  @@map("bs_component")
+}

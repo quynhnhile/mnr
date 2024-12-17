@@ -1,0 +1,39 @@
+model JobRepairClean {
+  id              BigInt    @id @default(autoincrement())
+  idRef           BigInt    @map("id_ref") @db.BigInt
+  idCont          String    @map("id_cont") @db.VarChar(50)
+  containerNo     String    @map("container_no") @db.VarChar(20)
+  idEstItem       BigInt?   @map("id_est_item") @db.BigInt
+  estimateNo      String    @map("estimate_no") @db.VarChar(50)
+  idJob           String    @map("id_job") @db.VarChar(50)
+  seq             Int       @db.Integer
+  repCode         String    @map("rep_code") @db.VarChar(50)
+  isClean         Boolean   @default(false) @map("is_clean") @db.Boolean
+  cleanMethodCode String?   @map("clean_method_code") @db.VarChar(50)
+  cleanModeCode   String?   @map("clean_mode_code") @db.VarChar(50)
+  jobStatus       String    @map("job_status") @db.VarChar(20)
+  startDate       DateTime? @map("start_date") @db.Timestamptz(3)
+  startBy         String?   @map("start_by") @db.VarChar(36)
+  finishDate      DateTime? @map("finish_date") @db.Timestamptz(3)
+  finishBy        String?   @map("finish_by") @db.VarChar(36)
+  cancelDate      DateTime? @map("cancel_date") @db.Timestamptz(3)
+  cancelBy        String?   @map("cancel_by") @db.VarChar(36)
+  completeDate    DateTime? @map("complete_date") @db.Timestamptz(3)
+  completeBy      String?   @map("complete_by") @db.VarChar(36)
+  vendorCode      String?    @map("vendor_code") @db.VarChar(50)
+  isReclean       Boolean   @default(false) @map("is_reclean") @db.Boolean
+  idRefReclean    BigInt?   @map("id_ref_reclean") @db.BigInt
+  recleanReason   String?   @map("reclean_reason") @db.Text
+  kcsStatus       Int       @default(0) @map("kcs_status") @db.Integer
+  kcsNote         String?   @map("kcs_note") @db.Text
+  note            String?   @db.Text
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  estimateDetail EstimateDetail? @relation("EstimateDetailJobs", fields: [idEstItem], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  @@map("job_repair_clean")
+}

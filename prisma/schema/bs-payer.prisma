@@ -1,0 +1,14 @@
+model Payer {
+  id         BigInt  @id @default(autoincrement())
+  payerCode  String  @unique @map("payer_code") @db.VarChar(50)
+  payerName  String  @map("payer_name") @db.VarChar(200)
+  mappingTos String  @map("mapping_tos") @db.VarChar(50)
+  note       String? @db.VarChar(200)
+
+  createdAt DateTime? @default(now()) @map("created_date") @db.Timestamptz(3)
+  createdBy String    @map("created_by") @db.VarChar(36)
+  updatedAt DateTime? @updatedAt @map("modified_date") @db.Timestamptz(3)
+  updatedBy String?   @map("modified_by") @db.VarChar(36)
+
+  @@map("bs_payer")
+}
